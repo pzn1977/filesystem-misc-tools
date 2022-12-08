@@ -1,5 +1,24 @@
 # filesystem-misc-tools
 
-Run "make" to build the executables.
+## INSTALL
 
-Check detailed information in .txt files.
+ - make
+ - make install
+
+## INFORMATION
+
+ - file-save-attrs -> output recursively all file metadata (times, owners, modes, ...)
+ - file-mtime -> output  recursively mtimes
+ - file-ctime -> output  recursively ctimes
+ - file-atime -> output  recursively atimes
+ - file-size -> output  recursively file size
+
+Check detailed information and examples in file-save-attrs.txt and file-ctime.txt files.
+
+## NOTES
+
+ - Use at your own risk. There are no warranties.
+
+## SUPPORT ME
+
+ - https://www.buymeacoffee.com/pzn77
