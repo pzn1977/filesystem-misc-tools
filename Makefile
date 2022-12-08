@@ -1,6 +1,6 @@
 CFLAGS = -Wall -Werror -O2
 CC = gcc
-BINARIES = file-save-attrs file-ctime file-mtime file-atime file-size
+BINARIES = file-attrs file-ctime file-mtime file-atime file-size
 
 all: $(BINARIES)
 
@@ -11,7 +11,7 @@ distclean: clean
 	rm -f $(BINARIES)
 
 install: all
-	install file-save-attrs $(DESTDIR)/usr/local/bin/
+	install file-attrs $(DESTDIR)/usr/local/bin/
 	install file-ctime $(DESTDIR)/usr/local/bin/
 	cd $(DESTDIR)/usr/local/bin/ && ln -s -f file-ctime file-atime
 	cd $(DESTDIR)/usr/local/bin/ && ln -s -f file-ctime file-mtime

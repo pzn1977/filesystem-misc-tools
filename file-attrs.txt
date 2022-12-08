@@ -1,6 +1,6 @@
-** file-save-attrs ** save file attributes recursively **
+** file-attrs ** outputs file attributes recursively **
 
-  This program saves filenames, types, sizes, times, owners, ...
+  This program outputs filenames, types, sizes, times, owners, ...
   It was developed to recover a "buggy backup" which lost all hardlinks
   on destination; it may be useful for other needs.
 
@@ -8,7 +8,7 @@
 
 Usage:
 
-  file-save-attrs [--xdev] [directory or file name]
+  file-attrs [--xdev] [directory or file name]
   
   Options:
     --xdev: Don't descend directories on other filesystems
@@ -25,7 +25,7 @@ Usage example:
   cd testdir; ln -s subdir/file2.txt file3.txt; cd ..
   ln -s /home testdir/link-to-home
 
-  file-save-attrs testdir
+  file-attrs testdir
     #type dev ino mode nlink size uid gid rdev atime mtime ctime file
     #types: f(file) d(directory) c(chardev) b(blockdev) p(pipe) l(link) s(sock)
     #type 'L' is used to describe link destination

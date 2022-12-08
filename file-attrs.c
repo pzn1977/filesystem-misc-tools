@@ -1,4 +1,4 @@
-/* file-save-attrs -- save file attributes recursively
+/* file-attrs -- outputs file attributes recursively
  * (C) 2006 Pedro Zorzenon Neto - Licence GPL2.0 */
 
 #include <sys/types.h>

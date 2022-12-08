@@ -5,11 +5,8 @@
 
 Usage:
 
-  file-save-attrs [--xdev] [directory or file name]
+  file-ctime [directory or file name]
   
-  Options:
-    --xdev: Don't descend directories on other filesystems
-
   If no directory or file name supplied, it defaults to current directory
 
 Usage example:
@@ -29,8 +26,7 @@ Usage example:
     1670513880 f testdir/file1.txt
     1670513886 l testdir/file3.txt
     1670513878 p testdir/fifo1
-  file-size testdir
-  
+  file-size testdir  
     5 l testdir/link-to-home
     4096 d testdir/subdir
     29 f testdir/subdir/file2.txt
