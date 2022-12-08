@@ -1,0 +1,39 @@
+** file-ctime, file-atime, file-mtime, file-size **
+
+ show file times (or size) recursively
+ (C) 2006 Pedro Zorzenon Neto - Licence GPL2 or later
+
+Usage:
+
+  file-save-attrs [--xdev] [directory or file name]
+  
+  Options:
+    --xdev: Don't descend directories on other filesystems
+
+  If no directory or file name supplied, it defaults to current directory
+
+Usage example:
+
+  mkdir testdir
+  mkdir testdir/subdir
+  mkfifo testdir/fifo1
+  date > testdir/file1.txt
+  date > testdir/subdir/file2.txt
+  cd testdir; ln -s subdir/file2.txt file3.txt; cd ..
+  ln -s /home testdir/link-to-home
+
+  file-mtime testdir
+    1670513889 l testdir/link-to-home
+    1670513883 d testdir/subdir
+    1670513883 f testdir/subdir/file2.txt
+    1670513880 f testdir/file1.txt
+    1670513886 l testdir/file3.txt
+    1670513878 p testdir/fifo1
+  file-size testdir
+  
+    5 l testdir/link-to-home
+    4096 d testdir/subdir
+    29 f testdir/subdir/file2.txt
+    29 f testdir/file1.txt
+    16 l testdir/file3.txt
+    0 p testdir/fifo1

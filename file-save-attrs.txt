@@ -1,0 +1,40 @@
+** file-save-attrs ** save file attributes recursively **
+
+  This program saves filenames, types, sizes, times, owners, ...
+  It was developed to recover a "buggy backup" which lost all hardlinks
+  on destination; it may be useful for other needs.
+
+  (C) 2006 Pedro Zorzenon Neto - Licence GPL2 or later
+
+Usage:
+
+  file-save-attrs [--xdev] [directory or file name]
+  
+  Options:
+    --xdev: Don't descend directories on other filesystems
+
+  If no directory or file name supplied, it defaults to current directory
+
+Usage example:
+
+  mkdir testdir
+  mkdir testdir/subdir
+  mkfifo testdir/fifo1
+  date > testdir/file1.txt
+  date > testdir/subdir/file2.txt
+  cd testdir; ln -s subdir/file2.txt file3.txt; cd ..
+  ln -s /home testdir/link-to-home
+
+  file-save-attrs testdir
+    #type dev ino mode nlink size uid gid rdev atime mtime ctime file
+    #types: f(file) d(directory) c(chardev) b(blockdev) p(pipe) l(link) s(sock)
+    #type 'L' is used to describe link destination
+    d 64768 29565373 509 3 4096 1000 1000 0 1670513892 1670513889 1670513889 testdir
+    l 64768 29549553 511 1 5 1000 1000 0 1670513892 1670513889 1670513889 testdir/link-to-home
+    L 64768 29549553 testdir/link-to-home -> /home
+    d 64768 29565375 509 2 4096 1000 1000 0 1670513892 1670513883 1670513883 testdir/subdir
+    f 64768 29549551 436 1 29 1000 1000 0 1670513883 1670513883 1670513883 testdir/subdir/file2.txt
+    f 64768 29549550 436 1 29 1000 1000 0 1670513880 1670513880 1670513880 testdir/file1.txt
+    l 64768 29549552 511 1 16 1000 1000 0 1670513892 1670513886 1670513886 testdir/file3.txt
+    L 64768 29549552 testdir/file3.txt -> subdir/file2.txt
+    p 64768 29549522 436 1 0 1000 1000 0 1670513878 1670513878 1670513878 testdir/fifo1
